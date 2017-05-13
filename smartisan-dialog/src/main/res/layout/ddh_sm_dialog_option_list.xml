@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/ddh_sm_dialog_bg_color"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/ddh_sm_dialog_title_bg">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp"
+            android:text="请选择一个选项"
+            android:textColor="#383838"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/ddh_sm_title_bar_cancel_btn"
+            android:layout_gravity="end"/>
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/ddh_sm_divider_background"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"/>
+</LinearLayout>

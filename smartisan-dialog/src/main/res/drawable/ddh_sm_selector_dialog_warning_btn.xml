@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ddh_sm_dialog_warning_btn_down" android:state_checked="true"/>
+    <item android:drawable="@drawable/ddh_sm_dialog_warning_btn_down" android:state_focused="true"/>
+    <item android:drawable="@drawable/ddh_sm_dialog_warning_btn_down" android:state_pressed="true"/>
+    <item android:drawable="@drawable/ddh_sm_dialog_warning_btn_normal"/>
+</selector>

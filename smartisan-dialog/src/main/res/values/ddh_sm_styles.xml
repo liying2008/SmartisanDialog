@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ddh_sm_BottomDialogStyle" parent="Animation.AppCompat.Dialog">
+        <item name="@android:windowEnterAnimation">@anim/ddh_sm_dialog_in_bottom</item>
+        <item name="@android:windowExitAnimation">@anim/ddh_sm_dialog_out_bottom</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="ddh_sm_title_bar_cancel_btn">
+        <item name="android:text">@string/ddh_sm_cancel</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/ddh_sm_selector_cancel_btn</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#383838</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>
