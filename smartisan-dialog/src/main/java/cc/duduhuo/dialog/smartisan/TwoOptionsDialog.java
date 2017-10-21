@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 /**
- * =======================================================
+ * =======================================================<br>
  * Author: liying - liruoer2008@yeah.net <br>
  * Date: 2017/5/13 14:07 <br>
  * Version: 1.0  <br>
@@ -41,14 +41,14 @@ public class TwoOptionsDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ddh_sm_dialog_two_options);
-        findView();
+        findViews();
         Window window = getWindow();
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.ddh_sm_BottomDialogStyle);
     }
 
-    private void findView() {
+    private void findViews() {
         mTvTitle = (TextView) findViewById(R.id.tvTitle);
         mTvCancel = (TextView) findViewById(R.id.tvCancel);
         mTvOp1 = (TextView) findViewById(R.id.tvOp1);

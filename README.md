@@ -1,7 +1,10 @@
-SmartisanDialog
-========
-> Smartisan风格的Dialog。  
-> [Download Demo Apk](https://raw.githubusercontent.com/liying2008/SmartisanDialog/master/app/app-debug.apk)
+SmartisanDialog - Smartisan风格的Dialog。
+=======
+[![Download](https://api.bintray.com/packages/liying2008/smartisan-dialog/smartisan-dialog/images/download.svg)](https://bintray.com/liying2008/smartisan-dialog/smartisan-dialog/_latestVersion)
+[![license](https://img.shields.io/github/license/liying2008/SmartisanDialog.svg)](https://github.com/liying2008/SmartisanDialog/blob/master/LICENSE)
+[![微博](https://img.shields.io/badge/新浪微博-独毒火-brightgreen.svg)](http://weibo.com/neuliying)
+
+### [Download Demo Apk](https://raw.githubusercontent.com/liying2008/SmartisanDialog/master/app/app-debug.apk)
 
 屏幕截图(Screenshots)
 ----
@@ -11,7 +14,7 @@ SmartisanDialog
 ----
 ## Use Gradle  
 ```gradle  
-compile 'cc.duduhuo.dialog:smartisan-dialog:1.0.0'
+compile 'cc.duduhuo.dialog:smartisan-dialog:1.1.0'
 ```
 
 ## Or Maven  
@@ -19,7 +22,7 @@ compile 'cc.duduhuo.dialog:smartisan-dialog:1.0.0'
 <dependency>
   <groupId>cc.duduhuo.dialog</groupId>
   <artifactId>smartisan-dialog</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <type>pom</type>
 </dependency>
 ```
@@ -27,7 +30,9 @@ compile 'cc.duduhuo.dialog:smartisan-dialog:1.0.0'
 使用(Usage)
 ----
 
-- 显示普通Dialog
+### 显示普通Dialog
+
+![NormalDialog](captures/NormalDialog.png)
 
 ```java  
 final NormalDialog dialog = SmartisanDialog.createNormalDialog(this);
@@ -53,7 +58,9 @@ dialog.setOnSelectListener(new NormalDialog.OnSelectListener() {
 });
 ```
 
-- 显示带两个选项的Dialog
+### 显示带两个选项的Dialog
+
+![TwoOptionsDialog](captures/TwoOptionsDialog.png)
 
 ```java  
 final TwoOptionsDialog dialog = SmartisanDialog.createTwoOptionsDialog(this);
@@ -76,7 +83,10 @@ dialog.setOnSelectListener(new TwoOptionsDialog.OnSelectListener() {
 });
 
 ```
-- 显示带三个选项的Dialog
+
+### 显示带三个选项的Dialog
+
+![ThreeOptionsDialog](captures/ThreeOptionsDialog.png)
 
 ```java  
 final ThreeOptionsDialog dialog = SmartisanDialog.createThreeOptionsDialog(this);
@@ -104,7 +114,10 @@ dialog.setOnSelectListener(new ThreeOptionsDialog.OnSelectListener() {
     }
 });
 ```
-- 显示警告Dialog
+
+### 显示警告Dialog
+
+![WarningDialog](captures/WarningDialog.png)
 
 ```java  
 final WarningDialog dialog = SmartisanDialog.createWarningDialog(this);
@@ -120,16 +133,13 @@ dialog.setOnConfirmListener(new WarningDialog.OnConfirmListener() {
 });
 
 ```
-- 显示选项列表Dialog
+
+### 显示选项列表Dialog
+
+![OptionListDialog](captures/OptionListDialog.png)
 
 ```java  
-List<String> options = new ArrayList<>(6);
-options.add("选项1");
-options.add("选项2");
-options.add("选项3");
-options.add("选项4");
-options.add("选项5");
-options.add("选项6");
+String[] options = new String[]{"选项1", "选项2", "选项3", "选项4", "选项5", "选项6"};
 final OptionListDialog dialog = SmartisanDialog.createOptionListDialog(this);
 dialog.setTitle("请选择一个选项")
     .setOptionList(options)
@@ -146,53 +156,117 @@ dialog.setOnOptionItemSelectListener(new OnOptionItemSelectListener() {
     }
 });
 ```
-- 可以自定义Dialog的内容视图
+
+### 通过隐藏单选按钮图标，显示另一种选项列表Dialog
+
+![SingleChoiceDialog](captures/SingleChoiceDialog-1.png)
+
+```java
+String[] options = {"在浏览器中打开", "复制链接网址", "分享链接"};
+final SingleChoiceDialog dialog = SmartisanDialog.createSingleChoiceDialog(this);
+dialog.setTitle("https://github.com/liying2008")
+    .setSingleChoiceItems(options, -1) // -1表示没有默认选中项
+    .setTitleTextSize(16)
+    .hideRadioIcon()  // 隐藏单选按钮图标
+    .show();
+// setOnSingleChoiceSelectListener()方法必须在show()方法之后调用，否则无效
+dialog.setOnSingleChoiceSelectListener(new OnSingleChoiceSelectListener() {
+    @Override
+    public void onSelect(int position) {
+        Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    }
+});
+```
+
+### 显示单选列表Dialog
+
+![SingleChoiceDialog](captures/SingleChoiceDialog-2.png)
+
+```java
+final SingleChoiceDialog dialog = SmartisanDialog.createSingleChoiceDialog(this);
+dialog.setTitle("蜂窝移动数据")
+    .setLeftBtnText("取消")
+    .setSingleChoiceItems(new String[]{"关", "使用 SIM 卡 1", "使用 SIM 卡 2"}, 0)
+    .show();
+dialog.setOnSingleChoiceSelectListener(new OnSingleChoiceSelectListener() {
+    @Override
+    public void onSelect(int position) {
+        Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    }
+});
+dialog.setOnBtnSelectListener(new SingleChoiceDialog.OnBtnSelectListener() {
+    @Override
+    public void onLeftSelect() {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onRightSelect() {
+
+    }
+});
+```
+
+### 显示带描述的单选列表Dialog
+
+![SingleChoiceDialog](captures/SingleChoiceDialog-3.png)
+
+```java
+String[] items = new String[]{"低电量模式", "超低电量模式"};
+String[] descs = new String[]{"禁止后台应用无线网络、移动数据连接", "仅支持接打电话、收发短信"};
+final SingleChoiceDialog dialog = SmartisanDialog.createSingleChoiceDialog(this);
+dialog.setTitle("省电模式")
+    .setLeftBtnText("取消")
+    .setRightBtnText("确认")
+    .setSingleChoiceItems(items, descs, 0)
+    .show();
+dialog.setOnSingleChoiceSelectListener(new OnSingleChoiceSelectListener() {
+    @Override
+    public void onSelect(int position) {
+        Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+    }
+});
+dialog.setOnBtnSelectListener(new SingleChoiceDialog.OnBtnSelectListener() {
+    @Override
+    public void onLeftSelect() {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onRightSelect() {
+        Toast.makeText(MainActivity.this, "已应用", Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    }
+});
+```
+
+### 可以自定义Dialog的内容视图
+
+![CustomizedDialog](captures/CustomizedDialog.png)
 
 ```java  
 final CustomizedDialog dialog = SmartisanDialog.createCustomizedDialog(this);
 View rootView = getLayoutInflater().inflate(R.layout.test_view, null);
 dialog.addView(rootView)
     .setTitle("自定义内容视图")
-    .setLeftBtnText("按钮1")  // 设置文本的按钮会显示，不设置文本则不显示
-    .setRightBtnText("按钮2")
     .show();
-dialog.setOnSelectListener(new CustomizedDialog.OnSelectListener() {
-    @Override
-    public void onLeftSelect() {
-        Toast.makeText(MainActivity.this, "onLeftSelect", Toast.LENGTH_SHORT).show();
-        dialog.dismiss();
-    }
-
-    @Override
-    public void onRightSelect() {
-        Toast.makeText(MainActivity.this, "onRightSelect", Toast.LENGTH_SHORT).show();
-        dialog.dismiss();
-    }
-});
-
 ```
 
-样式预览
+更新日志(ChangeLog)
 ----
-
-| 样式 | 预览
-| :--- | :--: 
-| NormalDialog | ![NormalDialog](captures/NormalDialog.png)
-| TwoOptionsDialog | ![TwoOptionsDialog](captures/TwoOptionsDialog.png)
-| ThreeOptionsDialog | ![ThreeOptionsDialog](captures/ThreeOptionsDialog.png)
-| WarningDialog | ![WarningDialog](captures/WarningDialog.png)
-| OptionListDialog | ![OptionListDialog](captures/OptionListDialog.png)
-| CustomizedDialog | ![CustomizedDialog](captures/CustomizedDialog.png)
-
+[点击查看更新日志](CHANGELOG.md)
 
 作者(Author)
 ---- 
-新浪微博：[@独毒火][2]  
-邮箱：[liruoer2008@yeah.net][3]
+新浪微博：[@独毒火](http://weibo.com/neuliying)
+
+邮箱：[liruoer2008@yeah.net](mailto:liruoer2008@yeah.net)
 
 日期(Date)
 ----
-2017-5-13
+2017-10-21
 
 License
 ----
@@ -211,6 +285,3 @@ License
 	See the License for the specific language governing permissions and
 	limitations under the License.
 
-
-  [2]: http://weibo.com/neuliying
-  [3]: mailto:liruoer2008@yeah.net

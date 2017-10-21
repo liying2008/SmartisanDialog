@@ -46,15 +46,29 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="customizedDialog1"
-        android:text="自定义内容视图(无按钮)"
+        android:onClick="singleChoiceNoRadioDialog"
+        android:text="另一种选项列表"
         android:textAllCaps="false"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="customizedDialog2"
-        android:text="自定义内容视图(有按钮)"
+        android:onClick="singleChoiceDialog"
+        android:text="单选按钮Dialog"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="singleChoiceDescDialog"
+        android:text="单选按钮Dialog(带描述)"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customizedDialog1"
+        android:text="自定义内容视图"
         android:textAllCaps="false"/>
 
 </LinearLayout>

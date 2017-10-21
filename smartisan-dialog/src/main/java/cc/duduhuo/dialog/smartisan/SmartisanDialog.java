@@ -4,7 +4,7 @@ package cc.duduhuo.dialog.smartisan;
 import android.content.Context;
 
 /**
- * =======================================================
+ * =======================================================<br>
  * Author: liying - liruoer2008@yeah.net <br>
  * Date: 2017/5/13 14:02 <br>
  * Version: 1.0  <br>
@@ -64,6 +64,16 @@ public class SmartisanDialog {
     }
 
     /**
+     * Create a single choice dialog
+     *
+     * @param context
+     * @return
+     */
+    public static SingleChoiceDialog createSingleChoiceDialog(Context context) {
+        return new SingleChoiceDialog(context);
+    }
+
+    /**
      * Create a customized dialog
      *
      * @param context
@@ -72,6 +82,5 @@ public class SmartisanDialog {
     public static CustomizedDialog createCustomizedDialog(Context context) {
         return new CustomizedDialog(context);
     }
-
 
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="ddh_sm_dialog_item_text_color">#3b3b3b</color>
+    <color name="ddh_sm_dialog_desc_text_color">#999999</color>
     <color name="ddh_sm_dialog_bg_color">#F5F5F5</color>
     <color name="ddh_sm_divider_background">#14000000</color>
     <!--Dialog Item Background-->

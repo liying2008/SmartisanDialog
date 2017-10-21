@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/llRoot"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:background="@drawable/ddh_sm_selector_dialog_choice_item_bg"
+              android:clickable="true"
+              android:orientation="horizontal"
+              android:paddingLeft="20dp"
+              android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/tvItem"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:textColor="@color/ddh_sm_dialog_choice_item_text_color"
+        tools:text="使用 SIM 卡 1"/>
+
+    <ImageView
+        android:id="@+id/ivCheck"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:paddingLeft="6dp"
+        android:src="@drawable/ddh_sm_shape_radio_checked"/>
+</LinearLayout>

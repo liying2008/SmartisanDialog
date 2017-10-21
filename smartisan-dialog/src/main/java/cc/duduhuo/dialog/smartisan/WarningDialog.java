@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 /**
- * =======================================================
+ * =======================================================<br>
  * Author: liying - liruoer2008@yeah.net <br>
  * Date: 2017/5/13 15:56 <br>
  * Version: 1.0  <br>
@@ -39,14 +39,14 @@ public class WarningDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ddh_sm_dialog_warning);
-        findView();
+        findViews();
         Window window = getWindow();
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.ddh_sm_BottomDialogStyle);
     }
 
-    private void findView() {
+    private void findViews() {
         mTvTitle = (TextView) findViewById(R.id.tvTitle);
         mTvCancel = (TextView) findViewById(R.id.tvCancel);
         mTvConfirm = (TextView) findViewById(R.id.tvConfirm);

@@ -6,17 +6,16 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cc.duduhuo.dialog.smartisan.CustomizedDialog;
 import cc.duduhuo.dialog.smartisan.NormalDialog;
 import cc.duduhuo.dialog.smartisan.OptionListDialog;
+import cc.duduhuo.dialog.smartisan.SingleChoiceDialog;
 import cc.duduhuo.dialog.smartisan.SmartisanDialog;
 import cc.duduhuo.dialog.smartisan.ThreeOptionsDialog;
 import cc.duduhuo.dialog.smartisan.TwoOptionsDialog;
 import cc.duduhuo.dialog.smartisan.WarningDialog;
 import cc.duduhuo.dialog.smartisan.listener.OnOptionItemSelectListener;
+import cc.duduhuo.dialog.smartisan.listener.OnSingleChoiceSelectListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -139,13 +138,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void optionListDialog(View view) {
-        List<String> options = new ArrayList<>(6);
-        options.add("选项1");
-        options.add("选项2");
-        options.add("选项3");
-        options.add("选项4");
-        options.add("选项5");
-        options.add("选项6");
+        String[] options = new String[]{"选项1", "选项2", "选项3", "选项4", "选项5", "选项6"};
         final OptionListDialog dialog = SmartisanDialog.createOptionListDialog(this);
         dialog.setTitle("请选择一个选项")
             .setOptionList(options)
@@ -165,6 +158,94 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * 另一种选项列表
+     *
+     * @param view
+     */
+    public void singleChoiceNoRadioDialog(View view) {
+        String[] options = {"在浏览器中打开", "复制链接网址", "分享链接"};
+        final SingleChoiceDialog dialog = SmartisanDialog.createSingleChoiceDialog(this);
+        dialog.setTitle("https://github.com/liying2008")
+            .setSingleChoiceItems(options, -1) // -1表示没有默认选中项
+            .setTitleTextSize(16)
+            .hideRadioIcon()  // 隐藏单选按钮图标
+            .show();
+        // setOnSingleChoiceSelectListener()方法必须在show()方法之后调用，否则无效
+        dialog.setOnSingleChoiceSelectListener(new OnSingleChoiceSelectListener() {
+            @Override
+            public void onSelect(int position) {
+                Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    /**
+     * 带单选按钮的Dialog
+     *
+     * @param view
+     */
+    public void singleChoiceDialog(View view) {
+        final SingleChoiceDialog dialog = SmartisanDialog.createSingleChoiceDialog(this);
+        dialog.setTitle("蜂窝移动数据")
+            .setLeftBtnText("取消")
+            .setSingleChoiceItems(new String[]{"关", "使用 SIM 卡 1", "使用 SIM 卡 2"}, 0)
+            .show();
+        dialog.setOnSingleChoiceSelectListener(new OnSingleChoiceSelectListener() {
+            @Override
+            public void onSelect(int position) {
+                Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.setOnBtnSelectListener(new SingleChoiceDialog.OnBtnSelectListener() {
+            @Override
+            public void onLeftSelect() {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onRightSelect() {
+
+            }
+        });
+    }
+
+    /**
+     * 带单选按钮的Dialog2
+     *
+     * @param view
+     */
+    public void singleChoiceDescDialog(View view) {
+        String[] items = new String[]{"低电量模式", "超低电量模式"};
+        String[] descs = new String[]{"禁止后台应用无线网络、移动数据连接", "仅支持接打电话、收发短信"};
+        final SingleChoiceDialog dialog = SmartisanDialog.createSingleChoiceDialog(this);
+        dialog.setTitle("省电模式")
+            .setLeftBtnText("取消")
+            .setRightBtnText("确认")
+            .setSingleChoiceItems(items, descs, 0)
+            .show();
+        dialog.setOnSingleChoiceSelectListener(new OnSingleChoiceSelectListener() {
+            @Override
+            public void onSelect(int position) {
+                Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.setOnBtnSelectListener(new SingleChoiceDialog.OnBtnSelectListener() {
+            @Override
+            public void onLeftSelect() {
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onRightSelect() {
+                Toast.makeText(MainActivity.this, "已应用", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+    }
+
+    /**
      * 自定义内容视图的Dialog
      *
      * @param view
@@ -176,33 +257,4 @@ public class MainActivity extends AppCompatActivity {
             .setTitle("自定义内容视图")
             .show();
     }
-
-    /**
-     * 自定义内容视图的Dialog
-     *
-     * @param view
-     */
-    public void customizedDialog2(View view) {
-        final CustomizedDialog dialog = SmartisanDialog.createCustomizedDialog(this);
-        View rootView = getLayoutInflater().inflate(R.layout.test_view, null);
-        dialog.addView(rootView)
-            .setTitle("自定义内容视图")
-            .setLeftBtnText("按钮1")  // 设置文本的按钮会显示，不设置文本则不显示
-            .setRightBtnText("按钮2")
-            .show();
-        dialog.setOnSelectListener(new CustomizedDialog.OnSelectListener() {
-            @Override
-            public void onLeftSelect() {
-                Toast.makeText(MainActivity.this, "onLeftSelect", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-
-            @Override
-            public void onRightSelect() {
-                Toast.makeText(MainActivity.this, "onRightSelect", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-    }
-
 }

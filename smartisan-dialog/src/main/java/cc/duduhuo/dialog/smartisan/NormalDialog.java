@@ -6,12 +6,13 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
 /**
- * =======================================================
+ * =======================================================<br>
  * Author: liying - liruoer2008@yeah.net <br>
  * Date: 2017/5/13 15:09 <br>
  * Version: 1.0  <br>
@@ -28,6 +29,7 @@ public class NormalDialog extends AlertDialog {
     private View mDivider2;
 
     private String mTitle = "";
+    private int mTitleTextSize = 18;
     private String mMsg = "";
     private String mText1 = "";
     private String mText2 = "";
@@ -47,10 +49,10 @@ public class NormalDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ddh_sm_dialog_normal);
-        findView();
+        findViews();
     }
 
-    private void findView() {
+    private void findViews() {
         mTvTitle = (TextView) findViewById(R.id.tvTitle);
         mTvMsg = (TextView) findViewById(R.id.tvMsg);
         mTv1 = (TextView) findViewById(R.id.tv1);
@@ -67,6 +69,17 @@ public class NormalDialog extends AlertDialog {
      */
     public NormalDialog setTitle(String title) {
         this.mTitle = title;
+        return this;
+    }
+
+    /**
+     * Set the dialog title
+     *
+     * @param sp dialog title text size in sp.
+     * @return This dialog instance.
+     */
+    public NormalDialog setTitleTextSize(int sp) {
+        this.mTitleTextSize = sp;
         return this;
     }
 
@@ -140,6 +153,7 @@ public class NormalDialog extends AlertDialog {
     public void show() {
         super.show();
         mTvTitle.setText(mTitle);
+        mTvTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTitleTextSize);
         mTvMsg.setText(mMsg);
         mTvMsg.setGravity(mGravity);
         if (TextUtils.isEmpty(mText1)) {

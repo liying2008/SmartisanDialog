@@ -20,7 +20,7 @@ import cc.duduhuo.dialog.smartisan.adapter.OptionListAdapter;
 import cc.duduhuo.dialog.smartisan.listener.OnOptionItemSelectListener;
 
 /**
- * =======================================================
+ * =======================================================<br>
  * Author: liying - liruoer2008@yeah.net <br>
  * Date: 2017/5/13 16:15 <br>
  * Version: 1.0  <br>
@@ -37,7 +37,7 @@ public class OptionListDialog extends AlertDialog {
 
     private String mTitle = "";
     private String mCancel = "";
-    private List<? extends CharSequence> mOptionList;
+    private CharSequence[] mOptions;
     /** The last selected option */
     private CharSequence mLastSelect;
     @ColorInt
@@ -53,14 +53,14 @@ public class OptionListDialog extends AlertDialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ddh_sm_dialog_option_list);
-        findView();
+        findViews();
         Window window = getWindow();
         window.setBackgroundDrawableResource(android.R.color.transparent);
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.ddh_sm_BottomDialogStyle);
     }
 
-    private void findView() {
+    private void findViews() {
         mTvTitle = (TextView) findViewById(R.id.tvTitle);
         mTvCancel = (TextView) findViewById(R.id.tvCancel);
         mRvOptions = (RecyclerView) findViewById(R.id.rvOptions);
@@ -96,7 +96,22 @@ public class OptionListDialog extends AlertDialog {
      * @return This dialog instance
      */
     public OptionListDialog setOptionList(List<? extends CharSequence> optionList) {
-        this.mOptionList = optionList;
+        int size = optionList.size();
+        mOptions = new CharSequence[size];
+        for (int i = 0; i < size; i++) {
+            mOptions[i] = optionList.get(i);
+        }
+        return this;
+    }
+
+    /**
+     * Set the list of options
+     *
+     * @param optionList options array
+     * @return This dialog instance
+     */
+    public OptionListDialog setOptionList(CharSequence[] optionList) {
+        this.mOptions = optionList;
         return this;
     }
 
@@ -143,7 +158,7 @@ public class OptionListDialog extends AlertDialog {
             mTvCancel.setText(mCancel);
         }
 
-        mOptionListAdapter = new OptionListAdapter(mOptionList, mLastSelect, mLastColor);
+        mOptionListAdapter = new OptionListAdapter(mOptions, mLastSelect, mLastColor);
         mOptionListAdapter.setItemGravity(mItemGravity);
         mRvOptions.setAdapter(mOptionListAdapter);
         mTvCancel.setOnClickListener(new View.OnClickListener() {
@@ -162,8 +177,6 @@ public class OptionListDialog extends AlertDialog {
      * @param listener
      */
     public void setOnOptionItemSelectListener(OnOptionItemSelectListener listener) {
-        if (mOptionListAdapter != null) {
-            mOptionListAdapter.setOnOptionItemSelectListener(listener);
-        }
+        mOptionListAdapter.setOnOptionItemSelectListener(listener);
     }
 }

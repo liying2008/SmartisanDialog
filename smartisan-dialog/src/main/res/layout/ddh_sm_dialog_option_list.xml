@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:lines="1"
+            android:ellipsize="end"
             android:paddingLeft="60dp"
             android:paddingRight="60dp"
             android:text="请选择一个选项"

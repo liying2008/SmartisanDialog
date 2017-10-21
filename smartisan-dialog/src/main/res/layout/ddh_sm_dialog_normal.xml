@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="#5c5c5c"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="Title"/>
@@ -61,6 +63,7 @@
             android:background="@drawable/ddh_sm_selector_dialog_normal_btn_bg"
             android:clickable="true"
             android:gravity="center"
+            android:ellipsize="end"
             android:textColor="@color/ddh_sm_dialog_normal_btn_text_color"
             android:textSize="14sp"
             tools:text="Button1"/>
@@ -79,6 +82,7 @@
             android:background="@drawable/ddh_sm_selector_dialog_normal_btn_bg"
             android:clickable="true"
             android:gravity="center"
+            android:ellipsize="end"
             android:textColor="@color/ddh_sm_dialog_normal_btn_text_color"
             android:textSize="14sp"
             tools:text="Button2"/>

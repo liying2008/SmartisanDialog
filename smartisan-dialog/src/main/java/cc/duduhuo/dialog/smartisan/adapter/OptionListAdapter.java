@@ -9,13 +9,11 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import cc.duduhuo.dialog.smartisan.R;
 import cc.duduhuo.dialog.smartisan.listener.OnOptionItemSelectListener;
 
 /**
- * =======================================================
+ * =======================================================<br>
  * Author: liying - liruoer2008@yeah.net <br>
  * Date: 2017/5/13 16:26 <br>
  * Version: 1.0 <br>
@@ -24,14 +22,14 @@ import cc.duduhuo.dialog.smartisan.listener.OnOptionItemSelectListener;
  * =======================================================
  */
 public class OptionListAdapter extends RecyclerView.Adapter<OptionListAdapter.ViewHolder> {
-    private List<? extends CharSequence> mOptionList;
+    private CharSequence[] mOptionList;
     private CharSequence mLast = "";
     @ColorInt
     private int mLastColor;
     private OnOptionItemSelectListener mListener;
     private int mItemGravity;
 
-    public OptionListAdapter(List<? extends CharSequence> optionList, CharSequence last, @ColorInt int lastColor) {
+    public OptionListAdapter(CharSequence[] optionList, CharSequence last, @ColorInt int lastColor) {
         this.mOptionList = optionList;
         this.mLastColor = lastColor;
         if (!TextUtils.isEmpty(last)) {
@@ -51,7 +49,7 @@ public class OptionListAdapter extends RecyclerView.Adapter<OptionListAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final CharSequence option = mOptionList.get(position);
+        final CharSequence option = mOptionList[position];
         holder.mTvItemName.setText(option);
         holder.mTvItemName.setGravity(mItemGravity);
         if (option.toString().equals(mLast.toString())) {
@@ -72,7 +70,7 @@ public class OptionListAdapter extends RecyclerView.Adapter<OptionListAdapter.Vi
     @Override
     public int getItemCount() {
         if (mOptionList == null) return 0;
-        return mOptionList.size();
+        return mOptionList.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
