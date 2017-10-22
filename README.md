@@ -14,7 +14,7 @@ SmartisanDialog - Smartisan风格的Dialog。
 ----
 ## Use Gradle  
 ```gradle  
-compile 'cc.duduhuo.dialog:smartisan-dialog:1.1.0'
+compile 'cc.duduhuo.dialog:smartisan-dialog:1.1.1'
 ```
 
 ## Or Maven  
@@ -22,7 +22,7 @@ compile 'cc.duduhuo.dialog:smartisan-dialog:1.1.0'
 <dependency>
   <groupId>cc.duduhuo.dialog</groupId>
   <artifactId>smartisan-dialog</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -266,7 +266,7 @@ dialog.addView(rootView)
 
 日期(Date)
 ----
-2017-10-21
+2017-10-22
 
 License
 ----

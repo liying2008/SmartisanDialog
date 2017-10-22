@@ -12,36 +12,49 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="9"
         android:layout_height="match_parent"
+        android:layout_weight="9"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvItem"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:ellipsize="end"
             android:gravity="bottom"
-            android:textSize="16sp"
+            android:lines="1"
+            android:paddingBottom="1dp"
             android:textColor="@color/ddh_sm_dialog_choice_item_text_color"
+            android:textSize="14sp"
             tools:text="低电量模式"/>
+
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:paddingTop="4dp"
+            android:ellipsize="end"
             android:gravity="top"
-            android:textSize="12sp"
+            android:lines="1"
+            android:paddingTop="3dp"
             android:textColor="@color/ddh_sm_dialog_choice_desc_text_color"
+            android:textSize="12sp"
             tools:text="禁止后台应用无线网络、移动数据连接"/>
 
     </LinearLayout>
-    <ImageView
-        android:id="@+id/ivCheck"
+
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:clickable="false"
-        android:paddingLeft="6dp"
-        android:src="@drawable/ddh_sm_shape_radio_checked"/>
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:clickable="false"
+            android:layout_gravity="center|end"
+            android:src="@drawable/ddh_sm_shape_radio_checked"/>
+    </FrameLayout>
 </LinearLayout>
